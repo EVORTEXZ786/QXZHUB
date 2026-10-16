@@ -15,16 +15,9 @@
             color: #ffffff;
         }
 
-        /* Staggered load animations */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes bounceSlow {
@@ -37,11 +30,8 @@
         .animate-fade-3 { opacity: 0; animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards; }
         .animate-fade-4 { opacity: 0; animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards; }
 
-        .animate-bounce-slow {
-            animation: bounceSlow 2s ease-in-out infinite;
-        }
+        .animate-bounce-slow { animation: bounceSlow 2s ease-in-out infinite; }
 
-        /* Pure Black & White Glassmorphism */
         .glass-panel {
             background: rgba(10, 10, 10, 0.9);
             backdrop-filter: blur(20px);
@@ -57,10 +47,9 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between relative overflow-x-hidden selection:bg-white selection:text-black">
 
-    <!-- TOP NAVIGATION BAR (Categories) -->
+    <!-- TOP NAVIGATION BAR -->
     <header class="fixed top-0 left-0 w-full z-40 glass-nav transition-all duration-300 animate-fade-1">
         <div class="max-w-6xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
-            <!-- Brand Logo -->
             <a href="#homepage" class="flex items-center gap-3 group">
                 <div class="w-9 h-9 rounded-xl bg-white text-black font-black text-sm flex items-center justify-center tracking-tighter shadow-lg group-hover:scale-105 transition-transform">
                     QXZ
@@ -68,7 +57,6 @@
                 <span class="font-extrabold text-xl text-white tracking-tight">QXZ Scripts</span>
             </a>
 
-            <!-- Categories Links -->
             <nav class="hidden md:flex items-center gap-2 p-1.5 rounded-full bg-white/5 border border-white/10 text-sm font-bold text-neutral-300">
                 <a href="#homepage" class="px-5 py-2 rounded-full hover:bg-white hover:text-black transition-all">Homepage</a>
                 <button onclick="openKeyModal()" class="px-5 py-2 rounded-full hover:bg-white hover:text-black transition-all cursor-pointer">Get a Key</button>
@@ -76,7 +64,6 @@
                 <a href="#tos" class="px-5 py-2 rounded-full hover:bg-white hover:text-black transition-all">Terms of Service</a>
             </nav>
 
-            <!-- Get Key Action Button -->
             <div class="flex items-center gap-3">
                 <button onclick="openKeyModal()" class="bg-white hover:bg-neutral-200 text-black font-bold text-xs py-2.5 px-5 rounded-full transition-all shadow-lg active:scale-95 cursor-pointer">
                     Get Key
@@ -87,7 +74,6 @@
             </div>
         </div>
 
-        <!-- Mobile Categories Dropdown -->
         <div id="mobileMenu" class="hidden md:hidden border-t border-white/10 bg-black/95 px-6 py-4 flex flex-col gap-3 text-sm font-bold text-neutral-300">
             <a href="#homepage" onclick="toggleMobileMenu()" class="py-2 hover:text-white">Homepage</a>
             <button onclick="openKeyModal(); toggleMobileMenu();" class="py-2 hover:text-white text-left cursor-pointer">Get a Key</button>
@@ -96,7 +82,7 @@
         </div>
     </header>
 
-    <!-- KEY SYSTEM & DISCORD AUTH MODAL -->
+    <!-- KEY SYSTEM MODAL -->
     <div id="authModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md px-4">
         <div class="glass-panel w-full max-w-md rounded-2xl p-8 shadow-2xl border border-white/20 text-center animate-fade-1 relative">
             <button onclick="closeKeyModal()" class="absolute top-4 right-4 text-neutral-400 hover:text-white p-1 cursor-pointer">
@@ -104,12 +90,12 @@
             </button>
 
             <span class="inline-block px-3.5 py-1 mb-3 text-xs font-bold tracking-widest uppercase bg-white text-black rounded-full shadow-md">
-                Key System
+                Key System Dashboard
             </span>
-            <h2 class="text-2xl font-extrabold text-white mb-2">QXZ Verification</h2>
-            <p id="modalInstruction" class="text-sm text-neutral-400 mb-6">Log in with Discord to tie your 24-hour key to your account.</p>
+            <h2 id="modalTitle" class="text-2xl font-extrabold text-white mb-2">QXZ Verification</h2>
+            <p id="modalInstruction" class="text-sm text-neutral-400 mb-6">Log in with Discord to begin generating your 24-hour key.</p>
 
-            <!-- Discord Login Section -->
+            <!-- STEP 1: Discord Login View -->
             <div id="discordLoginSection">
                 <button onclick="loginWithDiscord()" class="w-full bg-white hover:bg-neutral-200 text-black font-bold py-3.5 px-6 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 shadow-lg active:scale-95 cursor-pointer">
                     <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
@@ -117,30 +103,47 @@
                 </button>
             </div>
 
-            <!-- Key Checkpoints Section -->
-            <div id="keySection" class="hidden space-y-4">
-                <div class="flex items-center justify-center gap-3 p-3 bg-white/5 rounded-xl border border-white/10 text-xs">
-                    <img id="userAvatar" src="https://cdn.discordapp.com/embed/avatars/0.png" class="w-7 h-7 rounded-full border border-white/20">
-                    <span id="discordUsername" class="font-bold text-white">QXZ_User#1337</span>
+            <!-- STEP 2: Choose Provider & Complete Checkpoint View -->
+            <div id="checkpointSection" class="hidden space-y-4">
+                <div class="p-3 bg-white/5 rounded-xl border border-white/10 text-xs text-emerald-400 font-medium flex items-center justify-between">
+                    <span>Status: Logged In</span>
+                    <span class="text-white font-bold">Discord Connected</span>
                 </div>
                 
-                <p class="text-xs text-neutral-400">Complete checkpoint to unlock access for 24 hours:</p>
-                <div class="grid grid-cols-2 gap-2">
-                    <a id="lootlabsBtn" href="https://lootlabs.com" target="_blank" class="bg-neutral-900 hover:bg-neutral-800 text-white font-semibold py-2.5 px-3 rounded-xl border border-white/15 text-xs transition-all flex items-center justify-center">
-                        Get Key (LootLabs)
-                    </a>
-                    <a id="linkvertiseBtn" href="https://linkvertise.com" target="_blank" class="bg-neutral-900 hover:bg-neutral-800 text-white font-semibold py-2.5 px-3 rounded-xl border border-white/15 text-xs transition-all flex items-center justify-center">
-                        Get Key (Linkvertise)
+                <p class="text-xs text-neutral-300 font-semibold">Choose your preferred checkpoint provider to get your key:</p>
+                <div class="grid grid-cols-2 gap-3">
+                    <button onclick="selectProvider('LootLabs')" id="lootlabsBtn" class="bg-neutral-900 hover:bg-neutral-800 text-white font-bold py-3 px-3 rounded-xl border border-white/20 text-xs transition-all cursor-pointer">
+                        Use LootLabs
+                    </button>
+                    <button onclick="selectProvider('Linkvertise')" id="linkvertiseBtn" class="bg-neutral-900 hover:bg-neutral-800 text-white font-bold py-3 px-3 rounded-xl border border-white/20 text-xs transition-all cursor-pointer">
+                        Use Linkvertise
+                    </button>
+                </div>
+
+                <div id="selectedActionBox" class="hidden pt-2 space-y-3">
+                    <p id="providerInstruction" class="text-xs text-neutral-400">Click below to open your checkpoint and finish the steps:</p>
+                    <a id="checkpointLink" href="#" target="_blank" onclick="enableKeyUnlock()" class="block w-full bg-white hover:bg-neutral-200 text-black font-bold py-3 rounded-xl text-xs transition-all shadow-lg text-center">
+                        Complete Checkpoint Steps &rarr;
                     </a>
                 </div>
 
-                <div class="space-y-2 pt-2">
-                    <input type="text" id="keyInput" placeholder="Paste generated key here..." class="w-full bg-black/70 border border-white/20 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-white transition-colors text-center">
-                    <button onclick="verifyKey()" class="w-full bg-white hover:bg-neutral-200 text-black font-bold py-3 px-6 rounded-xl transition-all duration-200 shadow-lg cursor-pointer">
-                        Verify Key & Unlock Access
+                <div id="keyClaimBox" class="hidden pt-3 space-y-2 border-t border-white/10">
+                    <p class="text-xs text-emerald-400 font-semibold">Steps completed! Generate your 24-hour key below:</p>
+                    <button onclick="generateKey()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold py-3 px-6 rounded-xl transition-all shadow-lg cursor-pointer">
+                        Generate My 24h Key
                     </button>
-                    <p id="keyError" class="text-xs text-red-400 hidden">Invalid key! Please complete the checkpoint link.</p>
                 </div>
+            </div>
+
+            <!-- STEP 3: Key Display View -->
+            <div id="keyDisplaySection" class="hidden space-y-4">
+                <div class="p-4 bg-white/5 rounded-xl border border-white/10 text-center">
+                    <p class="text-xs text-neutral-400 mb-1">Your Active 24-Hour Key:</p>
+                    <code id="generatedKeyText" class="text-sm font-mono font-bold text-emerald-400 bg-black/60 px-3 py-1.5 rounded-lg block select-all">QXZ-SUCCESS-KEY</code>
+                </div>
+                <button onclick="closeKeyModal()" class="w-full bg-white hover:bg-neutral-200 text-black font-bold py-3 rounded-xl text-xs transition-all shadow-lg cursor-pointer">
+                    Done & Access Scripts
+                </button>
             </div>
         </div>
     </div>
@@ -150,7 +153,7 @@
         <div class="absolute inset-0 bg-cover bg-center filter grayscale contrast-125" style="background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2000&auto=format&fit=crop'); opacity: 0.12;"></div>
     </div>
 
-    <!-- HOMEPAGE / HERO SECTION -->
+    <!-- HOMEPAGE -->
     <section id="homepage" class="relative z-10 min-h-screen flex flex-col items-center justify-center text-center px-4 w-full max-w-4xl mx-auto pt-20">
         <div class="animate-fade-2">
             <span class="inline-block px-4 py-1.5 mb-4 text-xs font-bold tracking-widest uppercase bg-white/10 text-white rounded-full border border-white/20 shadow-lg">
@@ -203,7 +206,7 @@
                 </div>
 
                 <div id="codePreview" class="hidden mt-6 bg-black/90 border border-white/20 rounded-2xl p-4 overflow-x-auto font-mono text-xs text-neutral-300">
-                    <code>loadstring(game:HttpGet("https://raw.githubusercontent.com/EVORTEXZ786/MM2QXZVISUALLARP/refs/heads/main/MM2QXZVISUALLARP"))()</code>
+                    <code>loadstring(game:HttpGet("https://raw.githubusercontent.com/EVORTEXZ786/QXZHUB/refs/heads/main/QXZHUB"))()</code>
                 </div>
             </div>
         </div>
@@ -229,7 +232,26 @@
 
     <!-- Interactive JavaScript -->
     <script>
-        const scriptText = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/EVORTEXZ786/MM2QXZVISUALLARP/refs/heads/main/MM2QXZVISUALLARP"))()';
+        const scriptText = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/EVORTEXZ786/QXZHUB/refs/heads/main/QXZHUB"))()';
+
+        // Automatically detect login token from URL hash when returned from Discord
+        window.onload = function() {
+            const fragment = new URLSearchParams(window.location.hash.slice(1));
+            const accessToken = fragment.get('access_token');
+
+            if (accessToken) {
+                localStorage.setItem('qxz_discord_token', accessToken);
+                localStorage.setItem('qxz_discord_logged_in', 'true');
+                window.history.replaceState({}, document.title, window.location.pathname);
+                openKeyModal();
+                showCheckpointDashboard();
+            } else if (localStorage.getItem('qxz_authenticated') === 'true') {
+                closeKeyModal();
+            } else if (localStorage.getItem('qxz_discord_logged_in') === 'true') {
+                openKeyModal();
+                showCheckpointDashboard();
+            }
+        };
 
         function toggleMobileMenu() {
             document.getElementById('mobileMenu').classList.toggle('hidden');
@@ -244,20 +266,44 @@
         }
 
         function loginWithDiscord() {
-            document.getElementById('discordLoginSection').classList.add('hidden');
-            document.getElementById('keySection').classList.remove('hidden');
-            document.getElementById('modalInstruction').innerText = "Step 2: Complete a checkpoint link to get your key.";
+            const clientId = "1560561199790424084";
+            const redirectUri = encodeURIComponent("https://evortexz786.github.io/QXZHUB/");
+            window.location.href = `https://discord.com/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=token&scope=identify`;
         }
 
-        function verifyKey() {
-            const keyInput = document.getElementById('keyInput').value.trim();
-            const errorText = document.getElementById('keyError');
+        function showCheckpointDashboard() {
+            document.getElementById('discordLoginSection').classList.add('hidden');
+            document.getElementById('checkpointSection').classList.remove('hidden');
+            document.getElementById('modalTitle').innerText = "Select Checkpoint";
+            document.getElementById('modalInstruction').innerText = "Choose your preferred link provider to complete steps.";
+        }
 
-            if (keyInput.length > 0) {
-                closeKeyModal();
+        function selectProvider(providerName) {
+            document.getElementById('selectedActionBox').classList.remove('hidden');
+            const linkElem = document.getElementById('checkpointLink');
+            
+            if (providerName === 'LootLabs') {
+                linkElem.href = "https://lootlabs.com"; // Replace with your LootLabs link target
+                document.getElementById('providerInstruction').innerText = "Complete the LootLabs steps, then return here to claim your key:";
             } else {
-                errorText.classList.remove('hidden');
+                linkElem.href = "https://linkvertise.com"; // Replace with your Linkvertise link target
+                document.getElementById('providerInstruction').innerText = "Complete the Linkvertise steps, then return here to claim your key:";
             }
+        }
+
+        function enableKeyUnlock() {
+            document.getElementById('keyClaimBox').classList.remove('hidden');
+        }
+
+        function generateKey() {
+            const randomKey = 'QXZ-' + Math.random().toString(36).substring(2, 10).toUpperCase();
+            localStorage.setItem('qxz_authenticated', 'true');
+            
+            document.getElementById('checkpointSection').classList.add('hidden');
+            document.getElementById('keyDisplaySection').classList.remove('hidden');
+            document.getElementById('modalTitle').innerText = "Key Generated!";
+            document.getElementById('modalInstruction').innerText = "Your 24-hour key is ready to use.";
+            document.getElementById('generatedKeyText').innerText = randomKey;
         }
 
         function copyLoadstring(button) {
